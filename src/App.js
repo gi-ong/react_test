@@ -1,38 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
-// TODO: aaa
-// FIXME: aaa
-function TodoList(){
-    const title = "...";
-    const name = "...";
-
-}
+import React from 'react';
+import { Button } from 'antd';
+import 'antd/dist/reset.css';
+import 'App.css';
 
 
+const App = () => (
+  <div className='App'>
+    <button>Button</button>
+    <Button type="primary" onClick={()=> console.log("clicked")}>Button2</Button>
+  </div>
+)
 
 
 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+
+// function App() {
+//   return (
+//     <button>
+//       Hello, React.
+//     </button>
+//   );
+// }
 
 export default App;
