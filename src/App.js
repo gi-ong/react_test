@@ -1,9 +1,14 @@
 import React from 'react';
 import { Button } from 'antd';
 import 'antd/dist/reset.css';
+import PropTypes from "prop-types";
+import ThemedButton from "ThemedButton";
 import 'App.css';
 
 class PostDetail extends React.Component {
+  static propTypes = {
+    postId: PropTypes.number.isRequired,
+  }
   state = {
     postDetail : null,
   }
@@ -51,7 +56,8 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <PostDetail postId={this.state.postId}/>
+        <ThemedButton theme="normal" label="Say Hello" />
+        <PostDetail />
         <button onClick={() => this.setState({ postId: 20})}>
           postId 변경
         </button>
