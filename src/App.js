@@ -3,52 +3,109 @@ import { Button } from 'antd';
 import 'antd/dist/reset.css';
 import 'App.css';
 
-
-const actions = {
-  init(initialValue){
-    return { value: initialValue }
-  },
-  increament(prevState){
-    return { value: prevState.value + 1}
-  },
-  decreament(prevState){
-    return { value: prevState.value - 1}
+class PostDetail extends React.Component {
+  state = {
+    postDetail : null,
+  }
+  componentDidMount(){
+    const { postId } = this.props;
+    this.requestPost(postId);
+  }
+  componentDidUpdate(prevProps){
+    const { postId } = this.props;
+    if ( postId !== prevProps.postId){
+      this.requestPost(postId);
+    }
+  }
+  requestPost(postId){
+    console.log(`request post #${postId}`);
+    this.setState({
+      postDetail: null
+    });
+    // axios (http client) => this.setState
+    setTimeout(()=>{
+      this.setState({
+        postDetail: `로딩된 post #${postId}`
+      })
+    },3000)
   }
 
-};
-
-class Counter1 extends React.Component{
-  // state = actions.init(this.props.initialValue)
-
-    constructor(props){
-      super(props);
-      this.state = actions.init(this.props.initialValue);
-      this.setState(actions.increament);
-    }
-
   render(){
-    const {value} = this.state; // 현재 상태값 참조
+    const { postId } = this.props;
+    const { postDetail } = this.state;
     return (
       <div>
-        Counter1: {value}
-        <Button onClick={() => this.setState(actions.increament)}>+1</Button>
-        <Button onClick={() => this.setState(actions.decreament)}>-1</Button>
+        포스팅 #{postId}
+        <hr/>
+        {!postDetail && "로딩 중 ..."}
+        {postDetail}
       </div>
-      ); // jsx 문법
+    )
   }
 }
 
-function App() {
-  return (
-        <div>
-          <Counter1 initialValue={10} />
-        </div>
-      )
+class App extends React.Component {
+  state = {
+    postId: 10
+  }
+  render(){
+    return (
+      <div>
+        <PostDetail postId={this.state.postId}/>
+        <button onClick={() => this.setState({ postId: 20})}>
+          postId 변경
+        </button>
+      </div>
+    )
+  };
 }
 
 export default App;
 
 
+
+////////
+// const actions = {
+//   init(initialValue){
+//     return { value: initialValue }
+//   },
+//   increament(prevState){
+//     return { value: prevState.value + 1}
+//   },
+//   decreament(prevState){
+//     return { value: prevState.value - 1}
+//   }
+
+// };
+
+// class Counter1 extends React.Component{
+//   // state = actions.init(this.props.initialValue)
+
+//     constructor(props){
+//       super(props);
+//       this.state = actions.init(this.props.initialValue);
+//       this.setState(actions.increament);
+//     }
+
+//   render(){
+//     const {value} = this.state; // 현재 상태값 참조
+//     return (
+//       <div>
+//         Counter1: {value}
+//         <Button onClick={() => this.setState(actions.increament)}>+1</Button>
+//         <Button onClick={() => this.setState(actions.decreament)}>-1</Button>
+//       </div>
+//       ); // jsx 문법
+//   }
+// }
+// function App() {
+//   return (
+//         <div>
+//           <Counter1 initialValue={10} />
+//         </div>
+//       )
+// }
+////////////
 
 // class FruitComponent extends React.Component{
 //   render(){
