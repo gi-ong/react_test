@@ -3,13 +3,18 @@ import { Button } from 'antd';
 import 'antd/dist/reset.css';
 import PropTypes from "prop-types";
 import Counter from "Counter";
+import Message from "Message";
+import Profile from "Profile";
 import 'App.css';
 
+// npm run start
 
 class App extends React.Component{
   render(){
     return (
       <div>
+        <Profile/>
+        <Message/>
         <Counter/>
         <Counter color="green" />
         <Counter color="blue" />
